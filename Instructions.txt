@@ -1,0 +1,37 @@
+Program Purpose
+The program aims to filter data from a public dataset. After filtering, it performs a binary split on the data based on the 'Block' column. Finally, it copies the corresponding description files in the dataset to the appropriate folders.
+
+Data Source
+https://osf.io/s46pr/
+
+Code Explanation
+main.py: This is the main program. It mainly includes determining the data output path and selecting function features.
+data_selection.py: This is a data filtering function. It filters the data in the folder. The filtering requirements are as follows: The data must include columns whose keywords contain 'Block', 'Response', 'Confidence', 'Stimulus', and 'Subj_idx', and the data name should not contain "unpub". The filtered data will be saved to the specified address. Meanwhile, if there are missing values in the data, '(NAN)' will be marked after the data name. If the data is missing a column named 'Accuracy', '(no Acc)' will be marked after the output data name.
+
+data_separation.py: This is a data separation function. It separates the data in the specified file. It performs a binary split based on the 'Block' column. When the number of 'Block' values is even, the first half of the 'Block' values will be part1, and the second half will be part2. If the number of 'Block' values is odd, the middle 'Block' value will be discarded, and then the data will be split in the same way as in the even - numbered case. The separated data will be saved in a folder within the directory of the specified address. Every two separated data files will be saved in a newly created folder with the same name as the original data file.
+
+txt_selection: This is a function for matching experiment description files. After the separation is completed, running this function will copy the corresponding experiment description.txt documents contained in the original data to the folders of the corresponding data.
+
+How to Run the Program
+After running main.py, specify the input and output addresses of the files at the corresponding positions. Then:
+Enter 1 to run the data_selection function.
+Enter 2 to run the data_separation function.
+Enter 3 to run the txt_selection function.
+Press any other key to exit the program.
+
+程序目的
+将来自公开数据集的数据进行筛选，筛选过后通过 “Block” 进行二分，最后将数据集中对应的说明文件复制到对应的文件夹里。
+
+数据来源
+https://osf.io/s46pr/
+
+代码说明
+main.py：主程序，主要包括确定数据输出路径，进行函数功能的选择。
+data_selection.py：数据筛选函数。对文件夹里的数据进行筛选，筛选要求为：必须包含关键词含有 'Block'、'Response'、'Confidence'、'Stimulus'、'Subj_idx' 的列，并且数据名中不能含有 “unpub”。筛选后的数据会保存至指定地址。同时，若数据存在缺失值，则会在数据名称后标注‘（NAN）’；如果数据中缺少名为 'Accuracy' 的列，则在输出数据名字后标注 “（no Acc）”。
+
+data_separation.py：数据分离函数。对指定文件的数据进行分离，根据 “Block” 进行二分。当 “Block” 数量为偶数时，前半部分的 “Block” 为 part1，后半部分的 “Block” 为 part2；如果 “Block” 数量为奇数，则舍去最中间的 “Block”，然后和偶数情况一样对数据进行二分。分离好的数据将保存在地址所在目录的文件夹中，每两个数据会保存到和数据名字一样的新建文件夹中。
+
+txt_selection：实验说明文件匹配函数。在完成分离后，运行此函数，会将原始数据中所包含的对应实验说明.txt 文档复制到对应数据的文件夹中。
+
+如何运行程序
+运行 main.py 后，在对应位置指定文件的输入输出地址，然后运行。输入 1 则运行 data_selection 功能；输入 2 则运行 data_separation 功能；输入 3 则运行 txt_selection 功能。按其他键则退出程序。
