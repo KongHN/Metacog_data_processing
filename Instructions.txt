@@ -1,0 +1,39 @@
+Program Purpose
+The program is designed to filter data from a public dataset. After filtering, it divides the data into two parts based on the 'Block' column. Finally, it copies the corresponding description files in the dataset to the appropriate folders.
+
+Data Source
+https://osf.io/s46pr/
+
+Code Explanation
+main.py: This is the main program. It sets the data input and output paths and provides an interface for users to select different functions.
+data_selection.py: This is a data filtering function. It reads an Excel file (xlsx_path), filters rows based on specific conditions (Stimulus is 'yes', Response is 'yes', and Num_Blocks is not 'no'), and then copies corresponding CSV files from the source_folder to the destination_folder according to the filtered names.
+data_separation.py: This is a data separation function. It first checks if the data file contains required columns. The required columns are those whose names contain keywords like 'Block', 'Response', 'Confidence', 'Stimulus', and 'Subj_idx'. If all required columns are present, it divides the data in the file into two parts based on the 'Block' column. When the number of 'Block' values is even, the first half of the 'Block' values form part1, and the second half form part2. If the number is odd, the middle 'Block' value is discarded before splitting. The separated data is saved in a new folder with the same name as the original file, within the specified output directory.
+txt_selection.py: This is a function for matching experiment description files. After data separation, it copies the readme_.txt files from the source_folder to the corresponding data folders in the output_folder based on a naming convention.
+
+How to Run the Program
+Run main.py.
+Specify the input and output addresses of the files at the corresponding positions.
+Enter 1 to run the process_xlsx_and_copy_csv function in data_selection.py for data filtering.
+Enter 2 to run the process_folder function in data_separation.py for data separation.
+Enter 3 to run the copy_txt_files function in txt_selection.py for copying description files.
+Press any other key to exit the program.
+
+程序目的
+该程序旨在从一个公共数据集中筛选数据。筛选后，根据 “Block” 列将数据进行二分。最后，将数据集中相应的说明文件复制到合适的文件夹中。
+
+数据来源
+https://osf.io/s46pr/
+
+代码说明
+main.py：主程序。它设置数据的输入和输出路径，并为用户提供选择不同功能的界面。
+data_selection.py：数据筛选函数。它读取一个 Excel 文件（xlsx_path），根据特定条件（Stimulus为 'yes'、Response为 'yes' 且Num_Blocks不为 'no'）筛选行，然后根据筛选出的名称，将source_folder中的相应 CSV 文件复制到destination_folder。
+data_separation.py：数据分离函数。它首先检查数据文件是否包含所需的列。所需列是指列名包含 'Block'、'Response'、'Confidence'、'Stimulus' 和 'Subj_idx' 等关键词的列。如果所有必需列都存在，它会根据 “Block” 列将文件中的数据分为两部分。当 “Block” 值的数量为偶数时，前半部分 “Block” 值的数据构成 part1，后半部分构成 part2；如果数量为奇数，在分割前会先丢弃中间的 “Block” 值。分离后的数据会保存在指定输出目录下与原始文件名相同的新文件夹中。
+txt_selection.py：实验说明文件匹配函数。在数据分离后，它会根据命名规则，将source_folder中的readme_.txt文件复制到output_folder中相应的数据文件夹里。
+
+如何运行程序
+运行main.py。
+在相应位置指定文件的输入和输出地址。
+输入 1 以运行data_selection.py中的process_xlsx_and_copy_csv函数进行数据筛选。
+输入 2 以运行data_separation.py中的process_folder函数进行数据分离。
+输入 3 以运行txt_selection.py中的copy_txt_files函数来复制说明文件。
+按其他任意键退出程序。
