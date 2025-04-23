@@ -1,0 +1,38 @@
+Program Purpose
+This program is designed to filter data from a public dataset. After filtering, the data is divided into two parts based on the "Block" column. Finally, the corresponding description files in the dataset are copied to appropriate folders.
+
+Data Source
+https://osf.io/s46pr/
+
+Code Explanation
+1. main.py: It is the main program. It obtains the paths of all data folders (all_data_folder) and the xlsx file (xlsx_path) through user input, dynamically generates the paths of the data filtering folder (data_selection_folder) and the data separation folder (data_separation_folder), and creates these folders. Meanwhile, it provides an interface for users to select different functions. Users can enter operation numbers according to the prompts to execute corresponding functions.
+2. data_selection.py: It is a data filtering function. It reads the specified Excel file (xlsx_path), filters out the rows that meet specific conditions (where Stimulus is 'yes', Response is 'yes', and Min_Num_Blocks is not 'no'), and obtains the values in the Name_in_database column of these rows. Then, based on these values, it copies the corresponding CSV files from the source folder (source_folder) to the destination folder (destination_folder).
+3. data_separation.py: It is a data separation function. It first checks whether the data file contains the required columns. The required columns are those whose names contain keywords such as 'Block', 'Response', 'Confidence', 'Stimulus', and 'Subj_idx'. If all the required columns are present, it divides the data in the file into two parts based on the "Block" column. When the number of "Block" values is even, the data with the first half of the "Block" values forms part1, and the second half forms part2. If the number is odd, the middle "Block" value is discarded before splitting. The separated data is saved in a new folder with the same name as the original file in the specified output directory.
+4. txt_selection.py: It is an experimental description file matching function. After data separation, it extracts a specific part of the CSV file names in the data separation folder (data_separation_folder) as the matching key, then traverses the source folder (source_folder) to find the .txt files starting with 'readme_'. It copies the .txt files whose specific parts in the file names are the same as the matching key to the specified output folder (output_folder).
+
+How to Run the Program
+Run main.py.
+1. Enter the paths of all data folders (all_data_folder) and the xlsx file (xlsx_path) when prompted.
+2. Enter 1 to run the process_xlsx_and_copy_csv function in data_selection.py for data filtering.
+3. Enter 2 to run the process_folder function in data_separation.py for data separation.
+4. Enter 3 to run the copy_txt_files function in txt_selection.py to copy the description files.
+5. Press any other key to exit the program.
+
+程序目的
+该程序旨在从一个公共数据集中筛选数据。筛选后，根据 “Block” 列将数据进行二分。最后，将数据集中相应的说明文件复制到合适的文件夹中。
+
+数据来源
+https://osf.io/s46pr/
+
+代码说明
+1. main.py：主程序。它通过用户输入获取所有数据文件夹路径（all_data_folder）和 xlsx 文件路径（xlsx_path），动态生成数据筛选文件夹（data_selection_folder）和数据分离文件夹（data_separation_folder）的路径并创建这些文件夹。同时，为用户提供选择不同功能的界面，用户可根据提示输入操作编号来执行相应功能。
+2. data_selection.py：数据筛选函数。它读取指定的 Excel 文件（xlsx_path），筛选出满足特定条件（Stimulus为 'yes'、Response为 'yes' 且Min_Num_Blocks不为 'no'）的行，并获取这些行中Name_in_database列的值。然后，根据这些值，将源文件夹（source_folder）中相应的 CSV 文件复制到目标文件夹（destination_folder）。
+3. data_separation.py：数据分离函数。它首先检查数据文件是否包含所需的列，所需列是指列名包含 'Block'、'Response'、'Confidence'、'Stimulus' 和 'Subj_idx' 等关键词的列。若包含所有必需列，会根据 “Block” 列将文件中的数据分为两部分。当 “Block” 值的数量为偶数时，前半部分 “Block” 值的数据构成 part1，后半部分构成 part2；若数量为奇数，在分割前会先丢弃中间的 “Block” 值。分离后的数据会保存在指定输出目录下与原始文件名相同的新文件夹中。
+4. txt_selection.py：实验说明文件匹配函数。在数据分离后，它会提取数据分离文件夹（data_separation_folder）中 CSV 文件名里特定部分作为匹配键，再遍历源文件夹（source_folder）查找以readme_开头的.txt文件，将文件名中特定部分与匹配键相同的.txt文件复制到指定的输出文件夹（output_folder）。
+如何运行程序
+运行main.py。
+1.  在提示处输入所有数据文件夹的路径（all_data_folder）和 xlsx 文件的路径（xlsx_path）。
+2. 输入 1 以运行data_selection.py中的process_xlsx_and_copy_csv函数进行数据筛选。
+3. 输入 2 以运行data_separation.py中的process_folder函数进行数据分离。
+4. 输入 3 以运行txt_selection.py中的copy_txt_files函数来复制说明文件。
+5. 按其他任意键退出程序。按其他任意键退出程序。
